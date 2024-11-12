@@ -91,38 +91,42 @@ The backend consists of the following files:
 
 The frontend is currently implemented in console. It has following files:
 
-**-UI.py:** UI contains the header and other menus implementation alongwith win game menu which is implemented in CLI which allows the user to interact with the backend to perform tasksusing the ui.
+- **UI.py:** UI contains the header and other menus implementation alongwith win game menu which is implemented in CLI which allows the user to interact with the backend to perform tasksusing the ui.
 
-**-Main.py:** Main file contains all the driver code which interacts withthe UI and Game files to make a flow of the game.
+- **Main.py:** Main file contains all the driver code which interacts withthe UI and Game files to make a flow of the game.
 
 
 ## Game Flow
 
-   The game flow continues as:
+The game flow proceeds as follows:
 
-        On running the main.py file a main menu appears with header and options:
-        
-   **1. Play Game**
+1. **Main Menu**:
+   Upon running the `main.py` file, the main menu appears with the following options:
 
-         If the user wants to play the game, further the game is printed and a sub menu of game appears:
+   - **Play Game**: 
+     If the user selects to play the game, the game screen is displayed with a sub-menu of game options:
+     
+     - **1. Draw Card**: 
+       Allows the user to draw a card from the stockpile.
+     
+     - **2. Move Card**: 
+       Allows the user to move a single card between the game piles.
+     
+     - **3. Move Multiple Cards**: 
+       Allows the user to move multiple cards from one pile to another within the game.
+     
+     - **4. Get Hint**: 
+       Provides a hint for a valid move, helping the user when they are stuck.
+     
+     - **5. Exit**: 
+       Ends the current game session.
 
-                -- 1. Draw card
-                    Allowing user to draw card from stockpile
-                -- 2. Move card
-                    Allowing user to move single card from between the game piles.
-                -- 3. Move multiple cards:
-                    Allowing the user to move multiple cards from one pile to other in the game.
-                -- 4. Get Hint:
-                    Allowing user to get a hint for a valid move
-                -- 5. Exit:
-                    Ends the current game
+   - **Instructions**: 
+     Displays the instructions for playing the game.
 
-   **2. Instructions**
+   - **Exit**: 
+     Closes the game and exits the application.
 
-            Displays all the instructions to play the game.
-   **3. Exit**
-
-            Closes the game
 
 ## Folder Structure
 
