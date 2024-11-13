@@ -64,7 +64,7 @@ class LinkedList:
         return self.__head.card
 
     # Finding a specific node by card name in list
-    def find_node(self, card_name):
+    def find_node(self, card):
         # If list is empty
         if self.is_empty():
             return None
@@ -73,7 +73,7 @@ class LinkedList:
         current = self.__head
         # Loop continues until a specific card is found, else returns None
         while current:
-            if current.card.get_card_name() == card_name:  # If card name matches
+            if current.card==card:  # If card name matches
                 return current.card
             current = current.next
         return None  # Return None if card is not found

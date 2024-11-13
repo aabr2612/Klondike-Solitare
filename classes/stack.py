@@ -28,11 +28,11 @@ class Stack:
         return self.__linkedList.view_first_node()
     
     # Finding a card in stack
-    def find_card(self,card_name):
+    def find_card(self,card):
         if self.is_empty():
             return None
 
-        return self.__linkedList.find_node(card_name)
+        return self.__linkedList.find_node(card)
 
     # Number of cards in stack
     def cards_count(self):

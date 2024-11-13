@@ -1,7 +1,9 @@
 from classes.stack import Stack
 from classes.deck import Deck
 from classes.queue import Queue
+from classes.card import Card
 import game_files.utility
+
 
 # Game Class
 class Game:
@@ -169,7 +171,7 @@ class Game:
         # If the source and destination both have cards then check the card's rank and color to ensure the movement
         if destination_card.check_rank_lower(source_card) and destination_card.check_card_color()!=source_card.check_card_color():
             return True
-        
+
         return False 
    
     # Function to check the validity of the foundation to tableau movement
@@ -223,8 +225,13 @@ class Game:
     # Moving multiple cards
     def move_multiple_cards(self,source_index,destination_index,card_name):
         try:
+            
             # Function to capitalize the card name alphabets for better comparison
             card_name = game_files.utility.capitalize_card_name(card_name)
+            
+            # If card name is given empty
+            if card_name == None:
+                return "Enter a valid card name!"
             
             # Checks if the move is valid or not for multiple cards movement
             if not game_files.utility.valid_move(source_index,destination_index):
@@ -235,10 +242,17 @@ class Game:
             # If source is empty
             if self.tableau[source_index].is_empty():
                 return "Invalid move!"
-            
+
+            # A card instance to compare it with the existing cards
+            card = Card(0,0,card_name)
+
+            # If source is empty
+            if self.tableau[source_index].is_empty():
+                return "Source is empty!"
+
             # Peek the cards of source and destination
             destination_card = self.tableau[destination_index].peek()
-            source_card = self.tableau[source_index].find_card(card_name)
+            source_card = self.tableau[source_index].find_card(card)
 
             # If no card is found
             if source_card==None:

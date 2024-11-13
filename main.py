@@ -45,11 +45,11 @@ def main():
                                 destination = input("          Enter the destination(Tableau [T], Foundation[F]): ")
                                 source_index = 8
                                 if source.capitalize()=="T" or source.capitalize()=="F":
-                                        source_index = input("          Enter the source index: ")
+                                    source_index = input("          Enter the source index: ")
                                 destination_index = input("          Enter the destination index: ")
                                 msg = game.move_card(source,destination,source_index,destination_index)
                                 print("          "+msg)
-                                sleep(2)
+                                sleep(1)
                                 
                             # If choice is 3 move multiple cards
                             elif game_choice=="3":
@@ -58,12 +58,12 @@ def main():
                                 card_name = input("          Enter card name from source as 'AC', 'KD': ")
                                 msg = game.move_multiple_cards(source_index,destination_index,card_name)
                                 print("          "+msg)
-                                sleep(2)
+                                sleep(10)
 
                             # If choice is 4 get hint
                             elif game_choice=="4":
                                 print("          "+game.get_hint())
-                                sleep(3)
+                                sleep(2)
 
                             # If choice is 5 return to main menu
                             elif game_choice=="5":
@@ -72,9 +72,9 @@ def main():
                             # Invalid input
                             else:
                                 print("          Invalid choice!")
-                                sleep(0.5)
+                                sleep(0.3)
                         elif (game_condition=="C"):
-                            sleep(0.5)
+                            sleep(0.7)
 
             # Displaying instructions
             elif menu_choice=="2":

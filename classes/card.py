@@ -1,10 +1,10 @@
 # Card Class
 class Card:
     # Constructor
-    def __init__(self,rank,suit):
+    def __init__(self,rank,suit,name=None):
         self.__rank = rank # Rank of card
         self.__suit = suit # Suit of card
-        self.__name = self.__set_card_name() # Giving card a short name to compare for easy movements
+        self.__card_name = name if name else self.__set_card_name() # Giving card a short name to compare for easy movements
         self.__face_down = True # Face position of card
         self.__image_path = self.set_image_path() # Set a path of the image at start
     
@@ -19,7 +19,7 @@ class Card:
         return self.__rank
     
     def get_card_name(self):
-        return self.__name
+        return self.__card_name
     
     # Setting the image path for the card
     def set_image_path(self):
@@ -40,7 +40,7 @@ class Card:
 
     # Redefining str function for card display
     def __str__(self):
-        return f"{self.__rank} of {self.__suit} [{self.__name}]"
+        return f"{self.__rank} of {self.__suit} [{self.__card_name}]"
     
     # Flip card position
     def flip_card(self):
@@ -54,3 +54,9 @@ class Card:
     # Checking the color of the card
     def check_card_color(self):
         return "Red" if self.__suit in ["Diamonds", "Hearts"] else "Black"
+    
+    # Operator overloading
+    def __eq__(self,card):
+        if not isinstance(card, Card):
+            return False
+        return self.__card_name == card.get_card_name()
