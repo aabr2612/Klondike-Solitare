@@ -35,30 +35,30 @@ This project shows the effective application of **Data Structures** and **Object
 ## DSA in Klondike Solitaire
 
 ### 1. **Stacks (Linked List-based)**
-Stacks are used for the tableau, foundation, and waste piles, which adhere to the **Last-In-First-Out (LIFO)** principle:
+  Stacks are used for the tableau, foundation, and waste piles, which adhere to the **Last-In-First-Out (LIFO)** principle:
 - **Tableau Piles**: Cards are moved based on descending order and alternating colors.
 - **Foundation Piles**: Cards are added in ascending order (Ace to King).
 - **Waste Pile**: Cards are managed in sequence, drawn, or removed.
 
-Stacks are implemented with linked lists, ensuring operations like (`push`, `pop`, `peek`).
+  Stacks are implemented with linked lists, ensuring operations like (`push`, `pop`, `peek`).
 
 ### 2. **Queues (Implemented with Two Stacks)**
-The **stockpile** and **waste pile** are managed using a **queue**, implemented with two stacks, following the **First-In-First-Out (FIFO)** principle:
+  The **stockpile** and **waste pile** are managed using a **queue**, implemented with two stacks, following the **First-In-First-Out (FIFO)** principle:
 - **Stockpile**: Cards that haven't been drawn are managed in FIFO order.
 - **Waste Pile**: Cards drawn from the stockpile are added to the waste pile, with the queue structure rebringing them back when the stockpile is empty.
 
 ### 3. **Linked Lists**
-Linked lists allow dynamic storage for cards, enabling efficient insertions and deletions without pre-defined sizes. This structure supports:
+  Linked lists allow dynamic storage for cards, enabling efficient insertions and deletions without pre-defined sizes. This structure supports:
 - **Card Movement**: Efficiently manages the card movement.
 - **Card Representation**: Each card is a node, simplifying management.
 
 ### 4. **Arrays**
-Arrays are used for storing the deck cards and while moving and displaying cards in correct order.
+  Arrays are used for storing the deck cards and while moving and displaying cards in correct order.
 
 ## OOP Usage
 
 ### **1. Encapsulation**
-Classes like `Card`, `Deck`, `Stack`, and `Queue` hide internal data with private attributes (e.g., `__rank`, `__suit`, `__stock_pile`) and provide public methods (e.g., `get_suit()`, `draw_card()`, `push()`) to interact with them, ensuring data protection and integrity.
+  Classes like `Card`, `Deck`, `Stack`, and `Queue` hide internal data with private attributes (e.g., `__rank`, `__suit`, `__stock_pile`) and provide public methods (e.g., `get_suit()`, `draw_card()`, `push()`) to interact with them, ensuring data protection and integrity.
 
 ### **2. Composition**
 - The `Deck` class contains `Card` objects to form a deck.
@@ -66,7 +66,7 @@ Classes like `Card`, `Deck`, `Stack`, and `Queue` hide internal data with privat
 These relationships represent a "has-a" connection between the classes.
 
 ### **3. Abstraction**
-High-level methods (e.g., `draw_card()`, `push()`, `enqueue()`) abstract complex operations and provide a simplified interface for users, hiding the underlying logic of card and stack management.
+  High-level methods (e.g., `draw_card()`, `push()`, `enqueue()`) abstract complex operations and provide a simplified interface for users, hiding the underlying logic of card and stack management.
 
 ### **4. Method Overriding and Operator Overloading**
 - The `Card` class customizes methods such as:
@@ -76,7 +76,7 @@ High-level methods (e.g., `draw_card()`, `push()`, `enqueue()`) abstract complex
 These allow specialized behaviors for `Card` objects.
 
 ### **5. Polymorphism**
-Overridden methods like `__str__()` and `__eq__()` in the `Card` class allow different behaviors based on the object type, enabling flexible operations such as comparing and displaying cards.
+  Overridden methods like `__str__()` and `__eq__()` in the `Card` class allow different behaviors based on the object type, enabling flexible operations such as comparing and displaying cards.
 
 ## Backend Architecture
 
@@ -146,6 +146,9 @@ The project follows a well-organized folder structure for ease of development an
     │   └── ui.py
     └── main.py
 
+## Conclusion
+   This Klondike Solitaire project focuses on the effective use of **Data Structures (DSA)**, such as **stacks**, **queues**, and **linked lists**, to efficiently manage card movements and game rules.
+
 ## How to Run the Game
 
 To run the game, follow these steps:
@@ -166,5 +169,6 @@ To run the game, follow these steps:
 
         python 3.X or higher version required
 
-## Conclusion
-   This Klondike Solitaire project focuses on the effective use of **Data Structures (DSA)**, such as **stacks**, **queues**, and **linked lists**, to efficiently manage card movements and game rules.
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
