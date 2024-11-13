@@ -152,15 +152,19 @@ To run the game, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/aabr2612/klondike-solitaire
-
+   git clone https://github.com/aabr2612/Klondike-Solitare
+   
 2. **Navigate folder**
 
         cd solitaire
 
-3. **Run the main.py file:**
+3. **Run the main.py file**
 
         main.py
 
+4. **Dependencies**
+
+        python 3.X or higher version required
+
 ## Conclusion
-   This Klondike Solitaire project focuses on the effective use of **Data Structures (DSA)**, such as **stacks**, **queues**, and **linked lists**, to efficiently manage card movements and game rules. 
+   This Klondike Solitaire project focuses on the effective use of **Data Structures (DSA)**, such as **stacks**, **queues**, and **linked lists**, to efficiently manage card movements and game rules.
