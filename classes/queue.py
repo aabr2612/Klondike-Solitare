@@ -55,8 +55,10 @@ class Queue:
     def is_empty(self):
         return self.__size == 0
     
+    # Getters for the attributes
     def get_stock_pile(self):
         return self.__stock_pile
+
     def get_waste_pile(self):
         return self.__waste_pile
     
