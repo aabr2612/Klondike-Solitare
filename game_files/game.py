@@ -2,7 +2,6 @@ from classes.stack import Stack
 from classes.deck import Deck
 from classes.queue import Queue
 import game_files.utility
-from time import sleep
 
 # Game Class
 class Game:
