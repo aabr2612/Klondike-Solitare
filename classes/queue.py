@@ -8,12 +8,12 @@ class Queue:
         self.__waste_pile = Stack()
         self.__size = 0
 
-    # Enqueue card into the queue
+    # Enqueue element into the queue
     def enqueue(self,card):
         self.__size += 1
         self.__stock_pile.push(card)
     
-    # Removing card from the queue
+    # Removing element from the queue
     def dequeue(self):
         # If waste pile is empty
         if self.__waste_pile.is_empty():
@@ -23,9 +23,6 @@ class Queue:
         card = self.__waste_pile.pop()
         self.__size -= 1
 
-        # If after removing card waste pile is not empty flipping the existing cards for showing the cards
-        if not self.__waste_pile.is_empty():
-            self.__waste_pile.flip_cards()
         return card
     
     # Peek for queue
@@ -45,7 +42,6 @@ class Queue:
         
         card = self.__stock_pile.pop()
         self.__waste_pile.push(card)
-        self.__waste_pile.flip_cards()
     
     # Number of cards in queue
     def cards_count(self):

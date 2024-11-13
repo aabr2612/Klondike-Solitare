@@ -7,27 +7,28 @@ class Stack:
         self.__linkedList = LinkedList()
         self.__size = 0
     
-    # Pushing the card into the stack
-    def push(self,card):
+    # Pushing the element into the stack
+    def push(self,element):
         self.__size +=1
-        self.__linkedList.insert_at_head(card)
+        self.__linkedList.insert_at_head(element)
     
-    # Popping the card from stack
+    # Popping the element from stack
     def pop(self):
-        # Checks size if greater than 0 it pops the card from the stack
-        if self.__size -1>=0:
+        # Checks size if greater than 0 it pops the element from the stack
+        if not self.is_empty():
             self.__size -=1
             return self.__linkedList.remove_from_head()
         return None
 
-    # Viewing the top card in the stack
+    # Viewing the top element in the stack
     def peek(self):
-        # If the size of the stack is greater than 0
+        # If stack is empty
         if self.is_empty():
             return None
+        # Else
         return self.__linkedList.view_first_node()
     
-    # Finding a card in stack
+    # Finding an element in stack
     def find_card(self,card):
         if self.is_empty():
             return None
@@ -37,14 +38,9 @@ class Stack:
     # Number of cards in stack
     def cards_count(self):
         return self.__size
-    
-    # Flipping all cards in the stack
-    def flip_cards(self):
-        if self.__size>0:
-            self.__linkedList.flip_cards()
 
-    # Display function to display cards
-    def get_elements(self):
+    # Returns the top element in stack
+    def get_top(self):
         return self.__linkedList.get_head()
 
     # Checks if the stack is empty

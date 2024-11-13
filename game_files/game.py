@@ -55,6 +55,8 @@ class Game:
                 if self.valid_tableau_to_tableau_move(source_index,destination_index):
                     msg = f"Card moved {str(self.tableau[source_index].peek())} ---> {str(self.tableau[destination_index].peek())}"
                     self.tableau[destination_index].push(self.tableau[source_index].pop())
+                    # Flipping the top card if needed
+                    self.flip_tableau_card(source_index)
                     self.count+=1
                     return msg
 
@@ -64,6 +66,7 @@ class Game:
                 if self.valid_tableau_to_foundation_move(source_index,destination_index):
                     msg = f"Card moved {str(self.tableau[source_index].peek())} ---> {str(self.foundation[destination_index].peek())}"
                     self.foundation[destination_index].push(self.tableau[source_index].pop())
+                    self.flip_tableau_card(source_index)
                     self.count+=1
                     return msg
         
@@ -73,6 +76,9 @@ class Game:
                 if self.valid_foundation_to_tableau_move(source_index,destination_index):
                     msg = f"Card moved {str(self.foundation[source_index].peek())} ---> {str(self.tableau[destination_index].peek())}"
                     self.tableau[destination_index].push(self.foundation[source_index].pop())
+                    if self.foundation[source_index].get_top()!=None:
+                        if self.foundation[source_index].get_top().card.get_face_down():
+                            self.foundation[source_index].get_top().card.flip_card()
                     self.count+=1
                     return msg
 
@@ -82,6 +88,8 @@ class Game:
                 if self.valid_waste_to_tableau_move(destination_index):
                     msg = f"Card moved {str(self.stock_pile.peek())} ---> {str(self.tableau[destination_index].peek())}"
                     self.tableau[destination_index].push(self.stock_pile.dequeue())
+                    if self.stock_pile.get_waste_pile().get_top()!=None:
+                        self.flip_cards(self.stock_pile.get_waste_pile().get_top())
                     self.count+=1
                     return msg
                     
@@ -91,6 +99,8 @@ class Game:
                 if self.valid_waste_to_foundation_move(destination_index):
                     msg = f"Card moved {str(self.stock_pile.peek())} ---> {str(self.foundation[destination_index].peek())}"
                     self.foundation[destination_index].push(self.stock_pile.dequeue())
+                    if self.stock_pile.get_waste_pile().get_top()!=None:
+                        self.flip_cards(self.stock_pile.get_waste_pile().get_top())
                     self.count+=1
                     return msg
                 
@@ -290,6 +300,7 @@ class Game:
         cards = Stack()
         while(True):
             card = self.tableau[source_index].pop()
+            
             # Loop continues till the card is found in the source tableau
             if card.get_card_name() == card_name:
                 cards.push(card)
@@ -299,10 +310,15 @@ class Game:
         # Pushing the cards into the destination tableau
         while not cards.is_empty():
             self.tableau[destination_index].push(cards.pop())
+        
+        # Flipping tableaus top cards
+        self.flip_tableau_card(source_index)
     
     # Drawing card from stock to waste pile
     def draw_card_from_stockpile(self):
         self.stock_pile.draw_card()
+        if self.stock_pile.get_waste_pile().get_top()!=None:
+            self.flip_cards(self.stock_pile.get_waste_pile().get_top())
         self.count+=1
         
     # Win condition if all four foundations are filled by cards
@@ -310,7 +326,7 @@ class Game:
         if self.stock_pile.is_empty():
             for i in range(7):
                 if (not self.tableau[i].is_empty()):
-                    current = self.tableau[i].get_elements()
+                    current = self.tableau[i].get_top()
                     while (current):
                         if(current.card.get_face_down()):
                             return "F"
@@ -385,22 +401,23 @@ class Game:
             print("\nTableau:\n")
             for i in range(7):
                 print("Tableau "+str(i+1)+":",end=" ")
-                self.display_list(self.tableau[i].get_elements())
+                self.display_list(self.tableau[i].get_top())
                 
             # Displaying Foundation
             print("\nFoundations:\n")
             for i in range(4):
                 print("Foundation "+str(i+1)+":",end=" ")
-                self.display_list(self.foundation[i].get_elements())
+                self.display_list(self.foundation[i].get_top())
             
+            # Displaying stock pile
             print("\nStock Pile:", end=" ")
-            if self.stock_pile.get_stock_pile().is_empty(): print(" No cards available!")
+            if self.stock_pile.get_stock_pile().is_empty(): print("No cards available!")
             else: print("Cards available")
             
             # Displaying waste pile
             print("\nWaste Pile:",end=" ")
             if self.stock_pile.get_waste_pile().is_empty():print("No cards available!")
-            else: self.display_list(self.stock_pile.get_waste_pile().get_elements())
+            else: self.display_list(self.stock_pile.get_waste_pile().get_top())
                     
             # Printing the moves and hints count
             print(f"\nMoves Count: {self.count}\nHints Count: {self.hint_count}")
@@ -462,7 +479,7 @@ class Game:
         tableau_images = []
         for tableau in self.tableau:
             # Get all the cards in the tableau
-            tableau_images.append(self.get_all_cards_for_list(tableau.get_elements()))
+            tableau_images.append(self.get_all_cards_for_list(tableau.get_top()))
         return tableau_images
 
     # Loading from foundations for gui
@@ -470,9 +487,33 @@ class Game:
         foundation_images = []
         for foundation in self.foundation:
             # Get all the cards in the foundation
-            foundation_images.append(self.get_all_cards_for_list(foundation.get_elements()))
+            foundation_images.append(self.get_all_cards_for_list(foundation.get_top()))
         return foundation_images
 
     # Loading from waste for gui
     def get_waste_pile_images(self):
-        return self.get_all_cards_for_list(self.stock_pile.get_waste_pile().get_elements())
+        return self.get_all_cards_for_list(self.stock_pile.get_waste_pile().get_top())
+    
+    # Flipping all cards in the linked list
+    def flip_cards(self,head):
+        # If the linked list is empty, do nothing
+        if head == None:
+            return
+
+        # Flip the cards so that all cards are face up
+        current = head
+        while current:
+            # Flip the card if it is face down
+            if not current.card.get_face_down():
+                current.card.flip_card()
+            current = current.next
+
+        # Ensuring that the head card is always visible
+        head.card.flip_card()
+    
+    # Flip the tableau card
+    def flip_tableau_card(self,source_index):
+        # Flipping the top card if needed
+        if self.tableau[source_index].get_top()!=None:
+            if self.tableau[source_index].get_top().card.get_face_down():
+                self.tableau[source_index].get_top().card.flip_card()

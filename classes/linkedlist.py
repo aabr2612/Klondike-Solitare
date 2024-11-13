@@ -2,7 +2,7 @@
 class Node:
     # Constructor
     def __init__(self, card):
-        self.card = card  # Card
+        self.card = card  # Card or any data (Saying card as mostly used for cards)
         self.next = None  # Next
 
 # LinkedList Class
@@ -37,13 +37,10 @@ class LinkedList:
             self.__head = None
             return temp.card
 
-        # If head is not empty, removing card from it
+        # If head is not empty, removing element from it
         temp = self.__head
         self.__head = self.__head.next
 
-        # Flipping the head card if needed
-        if self.__head.card.get_face_down():
-            self.__head.card.flip_card()
         return temp.card
 
     # Function to get the head of the linked list
@@ -60,10 +57,10 @@ class LinkedList:
         if self.is_empty():
             return None
 
-        # Return the head node's card
+        # Return the head node's value
         return self.__head.card
 
-    # Finding a specific node by card name in list
+    # Finding a specific node by element in list
     def find_node(self, card):
         # If list is empty
         if self.is_empty():
@@ -71,26 +68,10 @@ class LinkedList:
 
         # If list is not empty
         current = self.__head
-        # Loop continues until a specific card is found, else returns None
+
+        # Loop continues until a specific element is found, else returns None
         while current:
-            if current.card==card:  # If card name matches
+            if current.card==card:  # If element matches
                 return current.card
             current = current.next
-        return None  # Return None if card is not found
-
-    # Flipping all cards in the linked list
-    def flip_cards(self):
-        # If the linked list is empty, do nothing
-        if self.is_empty():
-            return
-
-        # Flip the cards so that all cards are face up
-        current = self.__head
-        while current:
-            # Flip the card if it is face down
-            if not current.card.get_face_down():
-                current.card.flip_card()
-            current = current.next
-
-        # Ensuring that the head card is always visible
-        self.__head.card.flip_card()
+        return None  # Return None if element not found

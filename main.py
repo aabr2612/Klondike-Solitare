@@ -49,7 +49,7 @@ def main():
                                 destination_index = input("          Enter the destination index: ")
                                 msg = game.move_card(source,destination,source_index,destination_index)
                                 print("          "+msg)
-                                sleep(1)
+                                sleep(0.3)
                                 
                             # If choice is 3 move multiple cards
                             elif game_choice=="3":
@@ -58,7 +58,7 @@ def main():
                                 card_name = input("          Enter card name from source as 'AC', 'KD': ")
                                 msg = game.move_multiple_cards(source_index,destination_index,card_name)
                                 print("          "+msg)
-                                sleep(10)
+                                sleep(0.3)
 
                             # If choice is 4 get hint
                             elif game_choice=="4":
