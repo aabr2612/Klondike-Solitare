@@ -3,7 +3,6 @@ import msvcrt
 
 # Header of the game
 def header():
-    os.system("cls")
     print("""
             #   # #      ###  #   # ####  ### #   # #####    #####   ###  #     ### #####   ###   ### ####   #####
             #  #  #     #   # ##  # #   #  #  #  #  #       ##      #   # #      #    #    ## ##   #  #   #  #    

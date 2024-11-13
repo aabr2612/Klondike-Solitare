@@ -9,6 +9,7 @@ def main():
       # Main loop of the menu
       while(True):
             # Menu choice
+            os.system("cls")
             menu_choice = ui.ui.main_menu()
 
             # If 1 the game starts
@@ -19,6 +20,7 @@ def main():
                   
                   # Main game loop
                   while(True):
+                        os.system("cls")
                         ui.ui.header()
                         game.display()
 
@@ -27,6 +29,7 @@ def main():
                         if(game_condition=="W"):
                             ui.ui.game_won(game.count,game.hint_count)
                             break
+
                         elif(game_condition=="F"):
                             
                             # Game move choice
@@ -44,21 +47,23 @@ def main():
                                 if source.capitalize()=="T" or source.capitalize()=="F":
                                         source_index = input("          Enter the source index: ")
                                 destination_index = input("          Enter the destination index: ")
-                                print("          "+game.move_card(source,destination,source_index,destination_index)+" Press any key to continue...",end="")
-                                msvcrt.getch()
+                                msg = game.move_card(source,destination,source_index,destination_index)
+                                print("          "+msg)
+                                sleep(2)
                                 
                             # If choice is 3 move multiple cards
                             elif game_choice=="3":
                                 source_index = input("          Enter the source tableau index: ")
                                 destination_index = input("          Enter the destination tableau index: ")
                                 card_name = input("          Enter card name from source as 'AC', 'KD': ")
-                                print("          "+game.move_multiple_cards(source_index,destination_index,card_name)+" Press any key to continue...",end="")
-                                msvcrt.getch()
+                                msg = game.move_multiple_cards(source_index,destination_index,card_name)
+                                print("          "+msg)
+                                sleep(2)
 
                             # If choice is 4 get hint
                             elif game_choice=="4":
-                                print("          "+game.get_hint()+" Press any key to continue...",end="")
-                                msvcrt.getch()
+                                print("          "+game.get_hint())
+                                sleep(3)
 
                             # If choice is 5 return to main menu
                             elif game_choice=="5":
@@ -66,26 +71,27 @@ def main():
                             
                             # Invalid input
                             else:
-                                print("          Invalid choice! Press any key to continue...",end="")
-                                msvcrt.getch()
+                                print("          Invalid choice!")
+                                sleep(0.5)
                         elif (game_condition=="C"):
                             sleep(0.5)
 
             # Displaying instructions
             elif menu_choice=="2":
-                  ui.ui.instructions_to_play_game()
+                os.system("cls")
+                ui.ui.instructions_to_play_game()
                   
             # Exit the game
             elif menu_choice=="3":
-                  print("                                                    Thanks for playing the game! Press any key to continue...",end="")
-                  msvcrt.getch()
+                  print("                                                    Thanks for playing the game!")
+                  sleep(1)
                   os.system("cls")
                   break
             
             # Invalid input
             else:
-                  print("                                                    Invalid choice! Press any key to continue...",end="")
-                  msvcrt.getch()
+                  print("                                                    Invalid choice!")
+                  sleep(1)
 
 # Calling main        
 if __name__ == "__main__":
